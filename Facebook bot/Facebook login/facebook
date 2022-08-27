@@ -1,0 +1,42 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from auth_data import email, password
+import time
+import random
+
+
+def login(email, password):
+    
+    try:
+        browser = webdriver.Chrome('d:/Python/Instagram bot/chromedriver/chromedriver')
+            
+        browser.get('https://www.facebook.com/')
+        browser.find_element (By.XPATH, "//button[@class='_42ft _4jy0 _9xo6 _4jy3 _4jy1 selected _51sy']").click()
+        time.sleep(random.randrange(3, 5))
+            
+            
+        email_input = browser.find_element(By.NAME, "email")
+        email_input.clear()
+        email_input.send_keys(email)   
+        time.sleep(2)
+
+            
+        password_input = browser.find_element(By.NAME, "pass")
+        password_input.clear()
+        password_input.send_keys(password)  
+        
+        password_input.send_keys(Keys.ENTER)
+        time.sleep(10)
+        
+        
+        browser.close()
+        browser.quit()
+        
+        
+    except Exception as ex:
+        print(ex)
+        browser.close()
+        browser.quit()
+    
+login(email, password)
